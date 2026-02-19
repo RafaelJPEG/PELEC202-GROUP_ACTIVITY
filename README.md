@@ -1,0 +1,2 @@
+# PELEC202-GROUP_ACTIVITY
+This repository will be used for PELEC202-GROUP_ACTIVITY.

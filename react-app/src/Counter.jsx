@@ -1,26 +1,58 @@
-import  React,{ useState } from "react";
+import React, { useState } from 'react';
+import './Counter.css'; // External CSS for better organization
 
-function Counter(){
+function Counter() {
+  const [number, setNumber] = useState(0);
 
-    const [count, setCount] = useState(0);
-    
-    const increment = () => {
-        setCount(count + 1);
-    }
+  const increment = () => setNumber(prev => prev + 1);
+  const decrement = () => setNumber(prev => prev - 1);
+  const reset = () => setNumber(0);
 
-    const decrement = () => {
-        setCount(count - 1);
-    }
+  // Dynamic color based on count value
+  const getCountColor = () => {
+    if (number > 0) return '#4ade80'; // Green for positive
+    if (number < 0) return '#f87171'; // Red for negative
+    return '#64748b'; // Gray for zero
+  };
 
-    const reset = () => {
-        setCount(0);
-    }
-
-    return( <div className="counter-container">
-              <p className="count-display">{count}</p>
-              <button className="counter-button" onclick={decrement}>Subtract</button>
-              <button className="counter-button" onclick={reset}>Reset</button>
-              <button className="counter-button" onclick={increment}>Add</button>
-            </div>);
+  return (
+    <div className="counter-container">
+      <h1 className="counter-title">Button Click Counter</h1>
+      
+      <div 
+        className="counter-display" 
+        style={{ color: getCountColor() }}
+      >
+        {number}
+      </div>
+      
+      <div className="btn-container">
+        <button 
+          className="control-btn increment" 
+          onClick={increment}
+          aria-label="Increment counter"
+        >
+          + Add
+        </button>
+        
+        <button 
+          className="control-btn decrement" 
+          onClick={decrement}
+          aria-label="Decrement counter"
+        >
+          - Subtract
+        </button>
+      </div>
+      
+      <button 
+        className="reset-btn" 
+        onClick={reset}
+        aria-label="Reset counter"
+      >
+        Reset
+      </button>
+    </div>
+  );
 }
-export default Counter
+
+export default Counter;   
